@@ -32,7 +32,9 @@ INotifyWatchTowerDriver::INotifyWatchTowerDriver() : inotify_fd_( inotify_init()
 {
     int pipefd[2];
 
-    pipe2( pipefd, O_NONBLOCK );
+    if ( pipe2( pipefd, O_NONBLOCK ) == -1 ) {
+        LOG(logERROR) << "INotifyWatchTower::init pipe creation failed";
+    }
 
     breaking_pipe_read_fd_  = pipefd[0];
     breaking_pipe_write_fd_ = pipefd[1];
@@ -156,7 +158,10 @@ INotifyWatchTowerDriver::waitAndProcessEvents(
         if ( fds[1].revents & POLLIN )
         {
             uint8_t byte;
-            read( breaking_pipe_read_fd_, &byte, sizeof byte );
+            ssize_t r = read( breaking_pipe_read_fd_, &byte, sizeof byte );
+            if (r == -1) {
+                LOG(logERROR) << "Error reading from breaking " << errno;
+            }
         }
     }
 
@@ -214,5 +219,8 @@ void INotifyWatchTowerDriver::interruptWait()
 {
     char byte = 'X';
 
-    (void) write( breaking_pipe_write_fd_, (void*) &byte, sizeof byte );
+    ssize_t w = write( breaking_pipe_write_fd_, (void*) &byte, sizeof byte );
+    if (w == -1) {
+        LOG(logERROR) << "Error writing to breaking " << errno;
+    }
 }

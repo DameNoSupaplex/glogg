@@ -51,7 +51,7 @@ Build from the MinGW command prompt:
 
 Then create a copy of the standard gcc target to create the new cross-gcc target:
 
-    cd /usr/share/qt4/mkspecs/
+    cd /usr/share/qt5/mkspecs/
     sudo cp -a win32-g++ win32-x-g++
 
 and modify it to point to the cross-compiler and our local version of Windows Qt:

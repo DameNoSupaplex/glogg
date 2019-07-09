@@ -9,13 +9,13 @@ BOOSTDIR=$QTXDIR/boost_1_50_0
 make clean
 if [ "$1" == "debug" ]; then
     echo "Building a debug version"
-    qmake-qt4 glogg.pro -spec win32-x-g++ -r CONFIG+="debug win32 rtti no-dbus version_checker" BOOST_PATH=$BOOSTDIR
+    qmake-qt5 glogg.pro -spec win32-x-g++ -r CONFIG+="debug win32 rtti no-dbus version_checker" BOOST_PATH=$BOOSTDIR
 elif [ -z "$VERSION" ]; then
     echo "Building default version"
-    qmake-qt4 glogg.pro -spec win32-x-g++ -r CONFIG+="release win32 rtti no-dbus version_checker" BOOST_PATH=$BOOSTDIR
+    qmake-qt5 glogg.pro -spec win32-x-g++ -r CONFIG+="release win32 rtti no-dbus version_checker" BOOST_PATH=$BOOSTDIR
 else
     echo "Building version $VERSION"
-    qmake-qt4 glogg.pro -spec win32-x-g++ -r CONFIG+="release win32 rtti no-dbus version_checker" BOOST_PATH=$BOOSTDIR VERSION="$VERSION"
+    qmake-qt5 glogg.pro -spec win32-x-g++ -r CONFIG+="release win32 rtti no-dbus version_checker" BOOST_PATH=$BOOSTDIR VERSION="$VERSION"
 fi
 make -j3
 cp $QTXDIR/$QTVERSION/lib/{QtCore4,QtGui4,QtNetwork4}.dll release/
