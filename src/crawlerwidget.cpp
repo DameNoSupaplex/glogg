@@ -985,22 +985,6 @@ void CrawlerWidget::updateEncoding()
                     encoding = utf16be_encoding;
                     encoding_text_ = tr( "UTF-16BE" );
                     break;
-                case EncodingSpeculator::Encoding::BIG5:
-                    encoding = Encoding::ENCODING_BIG5;
-                    encoding_text_ = tr( "Big5" );
-                    break;
-                case EncodingSpeculator::Encoding::GB18030:
-                    encoding = Encoding::ENCODING_GB18030;
-                    encoding_text_ = tr( "GB18030/GB2312" );
-                    break;
-                case EncodingSpeculator::Encoding::SHIFT_JIS:
-                    encoding = Encoding::ENCODING_SHIFT_JIS;
-                    encoding_text_ = tr( "Shift_JIS" );
-                    break;
-                case EncodingSpeculator::Encoding::KOI8R:
-                    encoding = Encoding::ENCODING_KOI8R;
-                    encoding_text_ = tr( "KOI8-R" );
-                    break;
             }
             break;
         case ENCODING_UTF8:
