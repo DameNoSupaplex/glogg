@@ -3,7 +3,7 @@
 # Build glogg for win32 using the cross-compiler
 
 QTXDIR=$HOME/qt-x-win32
-QTVERSION=5.12.4-32
+QTVERSION=5.12.8-32
 BOOSTDIR=$QTXDIR/boost_1_50_0
 
 make clean
